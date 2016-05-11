@@ -1,7 +1,6 @@
-My [Neovim][] settings
-=====================================
+# My [Neovim][] settings
 
-It contains [Neovim] settings used by Hong Minhee. How to install it is:
+## Installation
 
     ./install.sh
 

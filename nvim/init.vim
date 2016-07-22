@@ -6,12 +6,17 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/seoul256.vim'
 
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/syntastic'
+
+Plug 'neomake/neomake'
 
 Plug 'The-NERD-Tree'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'davidhalter/jedi-vim'
+
+Plug 'elzr/vim-json'
+
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -25,37 +30,32 @@ let g:indentLine_color_term = 240
 " NERD Tree
 map <F2> :NERDTreeToggle<CR>
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+" Neomake-eslint
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWritePost,BufEnter * Neomake
 
 " ctrl-p
 map <c-p> :CtrlP<CR>
 
 " Tab and syntax
-
 set expandtab
 set ts=4
 set sw=2
-
-autocmd Filetype html setlocal ts=2 sw=2 sts=0 expandtab
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
-
-" Don't hide quotes in JSON document
-set conceallevel=0
 
 if has("syntax")
     syntax on
 endif
 
+autocmd Filetype html setlocal ts=2 sw=2 sts=0 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+let g:vim_json_syntax_conceal = 0
+
+
+" Custom shortcuts
 map <F3> :set nu!<CR>
 nnoremap tn :tabnew<CR>
+map <F4> :w !diff % -<CR>
+
 
 " Store swapfile to a specific directory
 set directory=$HOME/.config/nvim/swapfiles/

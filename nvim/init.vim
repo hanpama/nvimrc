@@ -18,7 +18,11 @@ Plug 'elzr/vim-json'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'leafgarland/typescript-vim'
+
 call plug#end()
+
+let g:airline#extensions#disable_rtp_load = 1
 
 " Theme
 let g:seoul256_background = 234
@@ -28,14 +32,24 @@ colo seoul256
 let g:indentLine_color_term = 240
 
 " NERD Tree
-map <F2> :NERDTreeToggle<CR>
+map <c-\> :NERDTreeToggle<CR>
+map <c-0> :NERDTreeFocus<CR>
 
 " Neomake-eslint
 let g:neomake_javascript_enabled_makers = ['eslint']
-autocmd! BufWritePost,BufEnter * Neomake
+" autocmd! BufWritePost,BufEnter * Neomake
+
+
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeErrorHL'}
+let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
+
+highlight NeomakeErrorHL ctermfg=254 ctermbg=234
+highlight NeomakeErrorHL ctermfg=254 ctermbg=234
 
 " ctrl-p
-map <c-p> :CtrlP<CR>
+" map <c-p> :CtrlP<CR>
 
 " Tab and syntax
 set expandtab

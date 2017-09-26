@@ -1,4 +1,5 @@
 set nocompatible
+set nu
 
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.config/nvim/plugged')
@@ -9,7 +10,7 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'neomake/neomake'
 
-Plug 'The-NERD-Tree'
+Plug 'vim-scripts/The-NERD-Tree'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -19,6 +20,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Quramy/tsuquyomi'
 
 call plug#end()
 
@@ -37,7 +40,7 @@ map <c-0> :NERDTreeFocus<CR>
 
 " Neomake-eslint
 let g:neomake_javascript_enabled_makers = ['eslint']
-" autocmd! BufWritePost,BufEnter * Neomake
+autocmd! BufWritePost,BufEnter * Neomake
 
 
 let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeErrorHL'}
@@ -45,11 +48,10 @@ let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_message_sign = {'text': '➤', 'texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeInfoSign'}
 
-highlight NeomakeErrorHL ctermfg=254 ctermbg=234
-highlight NeomakeErrorHL ctermfg=254 ctermbg=234
+let g:neomake_typescript_enabled_makers = []
 
-" ctrl-p
-" map <c-p> :CtrlP<CR>
+highlight NeomakeErrorHL ctermfg=254 ctermbg=234
+highlight NeomakeErrorHL ctermfg=254 ctermbg=234
 
 " Tab and syntax
 set expandtab
@@ -77,4 +79,13 @@ set directory=$HOME/.config/nvim/swapfiles/
 " Show whitespace characters
 set listchars=trail:~,extends:>,precedes:<
 set list
+
+
+" Tsuquyomi settings
+"
+" :echo tsuquyomi#config#tsscmd()
+
+" Clipboard
+set clipboard=unnamed
+
 
